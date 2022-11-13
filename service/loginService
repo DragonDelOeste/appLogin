@@ -1,0 +1,51 @@
+const axios = require('axios');
+
+const getDataLogin = (usu, pass) => {
+    return new Promise(async (resolve, reject) => {
+
+        const data = {
+            usuario:'admin',
+            password:'admin',
+            respuesta:'false'
+        };
+
+        if(data.usuario == usu && data.password == pass){
+            data.respuesta = true;
+        }else{
+            data.respuesta = false;
+        }
+        axios(data.respuesta)
+            .then(function (response) {
+                console.log(response);
+                resolve(true);
+            })
+            .catch(function (error) {
+                console.log(error);
+                return reject(false);
+            });
+    })
+}
+
+const postIngresoBarra= () => {
+    return new Promise(async (resolve, reject) => {
+
+        const config = {
+            method: 'get',
+            url: 'http://localhost:4002/historico/data',
+            headers: {}
+        };
+        axios(config)
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+                resolve(response.data);
+            })
+            .catch(function (error) {
+                console.log(error);
+                return reject(error);
+            });
+    })
+}
+
+module.exports = {
+    getDataLogin
+};
