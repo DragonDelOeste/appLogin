@@ -10,19 +10,23 @@ const getDataLogin = (usu, pass) => {
         };
 
         if(data.usuario == usu && data.password == pass){
-            data.respuesta = true;
+           resolve(true);
         }else{
-            data.respuesta = false;
+            resolve(false);
         }
-        axios(data.respuesta)
+       /* axios(data)
             .then(function (response) {
                 console.log(response);
-                resolve(true);
+                if(respose.respuesta){
+                    resolve(true);
+                }else{
+                    resolve(false);
+                }
             })
             .catch(function (error) {
                 console.log(error);
-                return reject(false);
-            });
+                return reject(error);
+            });*/
     })
 }
 
